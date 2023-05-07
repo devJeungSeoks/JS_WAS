@@ -4,12 +4,6 @@
 # idea
 .idea
 
-# gradle
-.gradle
-
-#build
-build
-
 # DB
 src/main/resources/application.properties
 
