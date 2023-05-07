@@ -1,6 +1,12 @@
 # Compiled class file
 *.class
 
+# idea
+.idea
+
+# DB
+src/main/resources/application.properties
+
 # Log file
 *.log
 
