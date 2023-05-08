@@ -1,20 +1,29 @@
 package com.user.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.user.entity.UserParam;
+import com.user.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class UserController {
 
-    @GetMapping("/api/hello")
-    public List<String> Hello(){
-        ArrayList list = new ArrayList();
-        list.add(0,"프론트 김민정누나");
-        list.add(1,"백엔드 안진석");
+    private Logger log = LoggerFactory.getLogger(getClass().getName());
 
-        return list;
+    @Autowired
+    UserService userService;
+
+    /**
+     * 회원가입
+     * @param userParam
+     */
+    @PostMapping("/signUp")
+    public void signUp(@RequestBody UserParam userParam) {
+        userService.save(userParam);
     }
 }
