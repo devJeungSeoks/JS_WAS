@@ -1,8 +1,7 @@
 package com.login.service;
 
 import com.login.repository.LoginRepository;
-import com.user.entity.UserMember;
-import config.SecurityConfig;
+import com.user.entity.Member;
 import exception.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,19 +33,19 @@ public class LoginService {
         }
     }
 
-    public UserMember getUser(String userId, String password) {
+    public Member getUser(String userId, String password) {
         String encPwd = passwordEncoder.encode(password);
 
         if(passwordEncoder.matches(password, encPwd) == true) {
-            return repository.findByUserId(userId);
+            return repository.findByMemberId(userId);
         } else {
-            return new UserMember();
+            return new Member();
         }
     }
 
     private boolean isValidUser(String userId, String password) {
         // 사용자 인증 로직
-        if (repository.findByUserIdAndPassword(userId, password) == null) {
+        if (repository.findByMemberIdAndPassword(userId, password) == null) {
             return false;
         } else {
             return true;
