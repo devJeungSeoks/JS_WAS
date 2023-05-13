@@ -5,27 +5,18 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Table(name = "USER_MEMBER", uniqueConstraints = {
-        @UniqueConstraint(
-                name = "ID_UNIQUE"
-                , columnNames = {"userId"}
-        )
-})
+@Table(name = "member")
+@Getter @Setter
 @ToString
-public class UserMember {
+public class Member {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "USERMEMBER_GENERATOR")
-    @Column(columnDefinition = "int not null comment '유저 고유번호'")
-    private Long userNo;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "MEMBER_GENERATOR")
+    @Column(name = "member_no", columnDefinition = "int not null comment '유저 고유번호'")
+    private Long no;
 
     @Column(columnDefinition = "varchar(20) not null comment '아이디'")
-    private String userId;
+    private String memberId;
 
     @Column(columnDefinition = "varchar(255) not null comment '패스워드'")
     private String password;
@@ -41,8 +32,9 @@ public class UserMember {
     private String modifyDate;
 
 
-    @OneToOne(mappedBy = "userMember")
-    private UserMemberDetail userMemberDetails;
+    @OneToOne
+    private MemberDetail memberDetail;
+
 
 }
 
