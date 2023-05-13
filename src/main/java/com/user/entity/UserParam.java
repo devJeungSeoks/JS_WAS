@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 public class UserParam {
 
 
-    private UserMember userMember;
+    private Member member;
     private String userId;
     private String password;
     private String adminYn;
@@ -59,7 +59,7 @@ public class UserParam {
 
 
     public UserParam(
-            UserMember userMember
+            Member member
             , String userId
             , String password
             , String adminYn
@@ -93,39 +93,15 @@ public class UserParam {
 
         //현재일자
         String getDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-//
-//        StringBuilder sb = new StringBuilder();
-//
-//        System.out.println("====================================================");
-//        //UserMember
-//        //패스워드 인코드
-//        this.password = passwordEncoder.encode(password);
-//        System.out.println("1111111111111111111111111111");
+
         setModifyDate(getDate);
         this.signDate = getDate;
-//        System.out.println("2222222222222222222222222222");
-//
-////
-//        //UserMemberDetail
-//        this.phone = sb.append(this.getPhone1()).append(this.getPhone2()).append(this.getPhone3()).toString();
-//        this.address = sb.append(this.getAddress1()).append(this.getAddress2()).toString();
-//        this.ssn = sb.append(this.getSsn1()).append(this.getSsn2()).toString();
-//        this.email = sb.append(this.getEmail1()).append(this.getEmail2()).toString();
-//        this.emailYn = this.getEmail().isEmpty() ? "Y" : "N";
-//        this.emailDate = this.emailYn.equals("Y") ? getDate : null;
-//        this.privacyDate = this.getPrivacyYn().equals("Y") ? getDate : null;
 
-
-
-
-
-        this.userMember = userMember;
+        this.member = member;
         this.userId = userId;
         this.password = passwordEncoder.encode(password);
         this.adminYn = adminYn;
         this.saveStatus = saveStatus;
-//        this.signDate = signDate;
-//        this.modifyDate = modifyDate;
         this.name = name;
         this.ssn = ssn;
         this.ssn1 = ssn1;
