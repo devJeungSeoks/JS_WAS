@@ -1,24 +1,23 @@
 package com.user.entity;
 
+import com.common.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-//@Builder
-//@AllArgsConstructor
-//@NoArgsConstructor
+@Table(name = "memberDetail")
 @Getter
 @Setter
-public class MemberDetail {
+public class MemberDetail extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "MEMBERDETAIL_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "memberDetail_seq")
     @Column(columnDefinition = "int not null comment '유저 고유번호'")
     private Long no;
 
     @OneToOne
-    @JoinColumn(name = "member_no", referencedColumnName = "member_no")
+    @JoinColumn(name = "member_no")
     private Member member;
 
     @Column(columnDefinition = "varchar(20) not null comment '이름'")
@@ -50,6 +49,9 @@ public class MemberDetail {
     @Column(columnDefinition = "varchar(60) null comment '상세주소'")
     private String address2;
 
+    @Column(columnDefinition = "varchar(5) null comment '우편번호'")
+    private String zipCode;
+
     @Column(columnDefinition = "int not null comment '거래점수'")
     private int transPoint;
     @Column(columnDefinition = "varchar(1) not null comment '거래 레벨'")
@@ -57,18 +59,6 @@ public class MemberDetail {
 
     @Column(columnDefinition = "varchar(40) null comment '이메일'")
     private String email;
-
-//    @Column(columnDefinition = "varchar(1) not null comment '개인정보 동의여부'")
-//    private String privacyYn;
-//
-//    @Column(columnDefinition = "varchar(8) null comment '개인정보 일자'")
-//    private String privacyDate;
-
-//    @Column(columnDefinition = "varchar(1) null comment '이메일 동의여부'")
-//    private String emailYn;
-//
-//    @Column(columnDefinition = "varchar(8) null comment '이메일 동의일자'")
-//    private String emailDate;
 
 
 }

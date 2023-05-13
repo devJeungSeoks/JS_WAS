@@ -1,5 +1,6 @@
 package com.user.entity;
 
+import com.common.entity.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,10 +9,10 @@ import javax.persistence.*;
 @Table(name = "member")
 @Getter @Setter
 @ToString
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "MEMBER_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "member_seq")
     @Column(name = "member_no", columnDefinition = "int not null comment '유저 고유번호'")
     private Long no;
 
@@ -26,15 +27,8 @@ public class Member {
     @Column(columnDefinition = "varchar(1) not null comment '활성여부'")
     private String saveStatus;
 
-    @Column(columnDefinition = "varchar(8) not null comment '가입날짜'")
-    private String signDate;
-    @Column(columnDefinition = "varchar(8) not null comment '정보수정 날짜'")
-    private String modifyDate;
-
-
-    @OneToOne
+    @OneToOne(mappedBy = "member", optional = false)
     private MemberDetail memberDetail;
-
 
 }
 
