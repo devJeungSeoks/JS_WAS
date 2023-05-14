@@ -2,11 +2,10 @@ package com.login.controller;
 
 import com.login.model.Login;
 import com.login.service.LoginService;
-import com.user.entity.UserMember;
+import com.user.entity.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import util.jwt.JwtAuthenticationResponse;
@@ -19,11 +18,11 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@RequestBody Login login) {
-        UserMember userMember = loginService.getUser(login.getId(), login.getPassword());
-        if (userMember == null) {
+        Member member = loginService.getUser(login.getId(), login.getPassword());
+        if (member == null) {
             return ResponseEntity.ok(null);
         } else {
-            String token = loginService.authenticateUser(userMember.getUserId(), userMember.getPassword());
+            String token = loginService.authenticateUser(member.getMemberId(), member.getPassword());
             return ResponseEntity.ok(new JwtAuthenticationResponse(token));
         }
     }

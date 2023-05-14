@@ -1,11 +1,11 @@
 package com.board.entity;
 
 import com.common.entity.BaseEntity;
-import com.user.entity.UserMember;
+import com.user.entity.Member;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 public class Board extends BaseEntity {
 
     @Id
@@ -25,8 +25,8 @@ public class Board extends BaseEntity {
     @Column(columnDefinition = "longtext null comment '내용'")
     private String contents;
 
-    @ManyToOne(targetEntity = UserMember.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "userNo")
-    private UserMember userMember;
+    private Member member;
 
 }

@@ -5,10 +5,10 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+//@Entity
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Getter
 @Setter
 public class UserCash {
@@ -18,9 +18,9 @@ public class UserCash {
     @Column(columnDefinition = "int not null comment '고유번호'")
     private Long no;
 
-    @ManyToOne(targetEntity = UserMember.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "userNo")
-    private UserMember userMember;
+//    @ManyToOne(targetEntity = UserMember.class, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "userNo")
+//    private UserMember userMember;
 
     @Column(columnDefinition = "int not null comment '잔액'")
     private int amount;
