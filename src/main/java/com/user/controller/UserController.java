@@ -22,8 +22,8 @@ public class UserController {
      * 회원가입
      * @param userParam
      */
-    @PostMapping("/signUp")
-    public void signUp(@RequestBody UserParam userParam) {
-        userService.save(userParam);
-    }
+//    @PostMapping("/signUp")
+//    public void signUp(@RequestBody UserParam userParam) {
+//        userService.save(userParam);
+//    }
 }
