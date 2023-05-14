@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Member extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "member_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "member_seq")
     @Column(name = "member_no", columnDefinition = "int not null comment '유저 고유번호'")
     private Long no;
 
