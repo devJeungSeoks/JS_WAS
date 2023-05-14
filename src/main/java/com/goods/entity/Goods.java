@@ -1,28 +1,24 @@
-package com.product.entity;
+package com.goods.entity;
 
 import com.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "product")
-@Getter
-@Setter
-@ToString
-public class Product extends BaseEntity {
+@Getter @Setter
+public class Goods extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "product_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "no", columnDefinition = "int not null comment '상품 고유번호'")
     private Long no;
 
     @Column(columnDefinition = "varchar(20) not null comment '상품명'")
     private String productName;
 
-    @Column(columnDefinition = "char(1) not null comment '상품종류(bag : 1, wallet : 2, shoes :3, acc : 4)'")
+    @Column(columnDefinition = "char(1) not null comment '상품종류'")
     private String kind;
 
     @Column(name = "price1", columnDefinition = "int not null comment '원가'")
@@ -38,7 +34,7 @@ public class Product extends BaseEntity {
     @Column(columnDefinition = "varchar(200) null comment '상품사진'")
     private String image;
 
-    @Column(name = "useYn", columnDefinition = "varchar(200) not null comment '판매유무'")
+    @Column(name = "use_yn", columnDefinition = "varchar(1) not null comment '판매유무'")
     private String useYn;
 
 
