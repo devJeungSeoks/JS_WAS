@@ -8,10 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class GoodsService {
 
@@ -19,12 +15,35 @@ public class GoodsService {
     GoodsRepository goodsRepository;
 
     public Page<GoodsDTO> getGoodsList(Pageable pageable, String productName) {
-        Page<Goods> goodsList = (productName.equals(null) || productName.equals("")) ? goodsRepository.findAll(pageable) : goodsRepository.findByProductNameContaining(pageable, productName);
+        Page<Goods> goodsList = (productName.equals(null) || productName.equals("")) ?
+                goodsRepository.findAll(pageable) : goodsRepository.findByProductNameContaining(pageable, productName);
         return mapGoodsListToDTO(goodsList);
+    }
+
+    public GoodsDTO createGoods(GoodsDTO goodsDTO) {
+        Goods goods = mapDTOToGoods(goodsDTO);
+        goods.setUseYn("Y");
+        Goods savedGoods = goodsRepository.save(goods);
+        return mapGoodsToDTO(savedGoods);
     }
 
     private Page<GoodsDTO> mapGoodsListToDTO(Page<Goods> goodsList) {
         return goodsList.map(this::mapGoodsToDTO);
+    }
+
+    private Goods mapDTOToGoods(GoodsDTO goodsDTO) {
+        Goods goods = new Goods();
+        goods.setProductName(goodsDTO.getProductName());
+        goods.setKind(goodsDTO.getKind());
+        goods.setCostPrice(goodsDTO.getCostPrice());
+        goods.setSalesPrice(goodsDTO.getSalesPrice());
+        goods.setProfitPrice(goodsDTO.getProfitPrice());
+        goods.setContent(goodsDTO.getContent());
+        goods.setImage(goodsDTO.getImage());
+        goods.setUseYn(goodsDTO.getUseYn());
+
+        // 필요한 경우에 따라 추가 필드를 매핑할 수 있음
+        return goods;
     }
 
     private GoodsDTO mapGoodsToDTO(Goods goods) {
@@ -32,12 +51,12 @@ public class GoodsService {
         goodsDTO.setContent(goods.getContent());
         goodsDTO.setProductName(goods.getProductName());
         goodsDTO.setKind(goods.getKind());
-        goodsDTO.setPrice1(goods.getPrice1());
-        goodsDTO.setPrice2(goods.getPrice2());
-        goodsDTO.setPrice3(goods.getPrice3());
-        goodsDTO.setContent(goods.getContent());
+        goodsDTO.setCostPrice(goods.getCostPrice());
+        goodsDTO.setSalesPrice(goods.getSalesPrice());
+        goodsDTO.setProfitPrice(goods.getProfitPrice());
         goodsDTO.setImage(goods.getImage());
         goodsDTO.setUseYn(goods.getUseYn());
+
 
         return goodsDTO;
     }
