@@ -21,12 +21,12 @@ public class Goods extends BaseEntity {
     @Column(columnDefinition = "char(1) not null comment '상품종류'")
     private String kind;
 
-    @Column(name = "price1", columnDefinition = "int not null comment '원가'")
-    private int price1;
-    @Column(name = "price2", columnDefinition = "int not null comment '판매가'")
-    private int price2;
-    @Column(name = "price3", columnDefinition = "int not null comment '이익'")
-    private int price3;
+    @Column(name = "costPrice", columnDefinition = "int not null comment '원가'")
+    private int costPrice;
+    @Column(name = "salesPrice", columnDefinition = "int not null comment '판매가'")
+    private int salesPrice;
+    @Column(name = "profitPrice", columnDefinition = "int not null comment '이익'")
+    private int profitPrice;
 
     @Column(columnDefinition = "varchar(1000) null comment '상품설명'")
     private String content;
