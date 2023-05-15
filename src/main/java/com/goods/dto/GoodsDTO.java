@@ -1,15 +1,16 @@
 package com.goods.dto;
 
+import com.common.entity.BaseEntity;
 import lombok.Data;
 
 @Data
-public class GoodsDTO {
+public class GoodsDTO extends BaseEntity {
     private Long no;
     private String productName;
     private String kind;
-    private int price1;
-    private int price2;
-    private int price3;
+    private int costPrice;
+    private int salesPrice;
+    private int profitPrice;
     private String content;
     private String image;
     private String useYn;
