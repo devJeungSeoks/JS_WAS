@@ -14,12 +14,23 @@ public class GoodsService {
     @Autowired
     GoodsRepository goodsRepository;
 
+    /**
+     *
+     * @param pageable
+     * @param productName
+     * @return
+     */
     public Page<GoodsDTO> getGoodsList(Pageable pageable, String productName) {
         Page<Goods> goodsList = (productName.equals(null) || productName.equals("")) ?
                 goodsRepository.findAll(pageable) : goodsRepository.findByProductNameContaining(pageable, productName);
         return mapGoodsListToDTO(goodsList);
     }
 
+    /**
+     *
+     * @param goodsDTO
+     * @return
+     */
     public GoodsDTO createGoods(GoodsDTO goodsDTO) {
         Goods goods = mapDTOToGoods(goodsDTO);
         goods.setUseYn("Y");
@@ -27,6 +38,11 @@ public class GoodsService {
         return mapGoodsToDTO(savedGoods);
     }
 
+    /**
+     * 역할 : mapGoodsListToDTO 메소드는 Goods 객체들을 GoodsDTO 객체들로 매핑하여 페이지 단위로 반환하는 역할을 수행함
+     * @param goodsList
+     * @return
+     */
     private Page<GoodsDTO> mapGoodsListToDTO(Page<Goods> goodsList) {
         return goodsList.map(this::mapGoodsToDTO);
     }
@@ -39,6 +55,7 @@ public class GoodsService {
         goods.setSalesPrice(goodsDTO.getSalesPrice());
         goods.setProfitPrice(goodsDTO.getProfitPrice());
         goods.setContent(goodsDTO.getContent());
+        goods.setLimitedTimeOffer(goodsDTO.getLimitedTimeOffer());
         goods.setImage(goodsDTO.getImage());
         goods.setUseYn(goodsDTO.getUseYn());
 
@@ -49,6 +66,7 @@ public class GoodsService {
     private GoodsDTO mapGoodsToDTO(Goods goods) {
         GoodsDTO goodsDTO = new GoodsDTO();
         goodsDTO.setContent(goods.getContent());
+        goodsDTO.setLimitedTimeOffer(goods.getLimitedTimeOffer());
         goodsDTO.setProductName(goods.getProductName());
         goodsDTO.setKind(goods.getKind());
         goodsDTO.setCostPrice(goods.getCostPrice());

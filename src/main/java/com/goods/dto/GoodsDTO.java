@@ -12,6 +12,7 @@ public class GoodsDTO extends BaseEntity {
     private int salesPrice;
     private int profitPrice;
     private String content;
+    private String limitedTimeOffer;
     private String image;
     private String useYn;
 

@@ -30,6 +30,8 @@ public class Goods extends BaseEntity {
 
     @Column(columnDefinition = "varchar(1000) null comment '상품설명'")
     private String content;
+    @Column(columnDefinition = "varchar(255) null comment '할인특가명'")
+    private String limitedTimeOffer;
 
     @Column(columnDefinition = "varchar(200) null comment '상품사진'")
     private String image;
