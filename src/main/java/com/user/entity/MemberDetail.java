@@ -13,7 +13,7 @@ public class MemberDetail extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "memberDetail_seq")
-    @Column(columnDefinition = "int not null comment '유저 고유번호'")
+    @Column(columnDefinition = "int not null comment '고유번호'")
     private Long no;
 
     @OneToOne
