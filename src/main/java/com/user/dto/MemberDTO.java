@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 public class MemberDTO extends BaseEntity {
-//    private Long no;
+    private Long no;
     private String memberId;
     private String password;
     private String adminYn;
@@ -25,5 +25,4 @@ public class MemberDTO extends BaseEntity {
     private int transPoint;
     private String transLevel;
     private String email;
-
 }
