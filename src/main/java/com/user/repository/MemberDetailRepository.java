@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MemberDetailRepository extends JpaRepository<MemberDetail, Integer> {
+public interface MemberDetailRepository extends JpaRepository<MemberDetail, Long> {
+
 
 }

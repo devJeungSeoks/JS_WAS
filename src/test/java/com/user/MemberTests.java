@@ -2,7 +2,9 @@ package com.user;
 
 import com.user.controller.MemberController;
 import com.user.dto.MemberDTO;
+import com.user.entity.Member;
 import com.user.repository.MemberRepository;
+import com.user.service.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +20,9 @@ public class MemberTests {
 
     @Autowired
     MemberController memberController;
+
+    @Autowired
+    MemberService memberService;
 
 
 
@@ -67,6 +72,26 @@ public class MemberTests {
         // 패스워드를 암호화합니다.
         String encodedPassword = passwordEncoder.encode(decodePassword);
         System.out.println(encodedPassword);
+
+    }
+
+
+
+
+    @Test
+    public void login() {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String pasa = "$2a$10$9cCwdrdwH09zmLCPL8qHh.inZx.4nZsi4DTianCyIM4QcwyRCejBu";
+        passwordEncoder.matches("223",pasa);
+    }
+    @Test
+    public void loginUserDetailTest() {
+
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setMemberId("mis");
+        memberDTO.setPassword("223");
+
+        Member member = memberService.login(memberDTO);
 
     }
 }

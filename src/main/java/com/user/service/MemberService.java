@@ -7,6 +7,7 @@ import com.user.repository.MemberDetailRepository;
 import com.user.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,45 @@ public class MemberService {
 
         // Member와 MemberDetail을 저장합니다.
         memberRepository.save(member);
+    }
+
+    /**
+     * 회원 조회
+     *
+     * @param userNo
+     */
+    public Member memberSelect(Long userNo) {
+        return memberRepository.findById(userNo).get();
+    }
+
+    /**
+     * 회원 상세조회
+     *
+     * @param userNo
+     */
+    public MemberDetail memberDetailSelect(Long userNo) {
+        return memberDetailRepository.findById(userNo).get();
+    }
+
+    /**
+     * 회원가입
+     *
+     * @param memberDto
+     */
+    public Member login(MemberDTO memberDto) {
+        try {
+            // 회원 검색
+            Member member = memberRepository.findByMemberId(memberDto.getMemberId());
+
+            // 패스워드 비교(입력한 값, 비교값)
+            if (passwordEncoder.matches(memberDto.getPassword(), member.getPassword())) {
+                return member;
+            } else {
+                throw new UsernameNotFoundException("Invalid username or password.");
+            }
+        } catch (UsernameNotFoundException e) {
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
     }
 
     /**
