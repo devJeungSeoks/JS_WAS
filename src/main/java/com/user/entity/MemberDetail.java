@@ -7,8 +7,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "memberDetail")
-@Getter
-@Setter
+@Getter @Setter
+@NoArgsConstructor
+@ToString
 public class MemberDetail extends BaseEntity {
 
     @Id
@@ -17,7 +18,7 @@ public class MemberDetail extends BaseEntity {
     private Long no;
 
     @OneToOne
-    @JoinColumn(name = "member_no")
+    @JoinColumn(name = "memberNo")
     private Member member;
 
     @Column(columnDefinition = "varchar(20) not null comment '이름'")
