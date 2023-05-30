@@ -8,8 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "memberDetail")
 @Getter @Setter
-@NoArgsConstructor
-@ToString
 public class MemberDetail extends BaseEntity {
 
     @Id
@@ -41,7 +39,7 @@ public class MemberDetail extends BaseEntity {
     @Column(columnDefinition = "varchar(20) null comment '계좌번호'")
     private String bankAccount;
 
-    @Column(columnDefinition = "varchar(1) not null comment '성별'")
+    @Column(columnDefinition = "char not null comment '성별'")
     private String gender;
     @Column(columnDefinition = "varchar(100) null comment '통합 주소'")
     private String address;
@@ -55,11 +53,17 @@ public class MemberDetail extends BaseEntity {
 
     @Column(columnDefinition = "int not null comment '거래점수'")
     private int transPoint;
-    @Column(columnDefinition = "varchar(1) not null comment '거래 레벨'")
+    @Column(columnDefinition = "char not null comment '거래 레벨'")
     private String transLevel;
 
     @Column(columnDefinition = "varchar(40) null comment '이메일'")
     private String email;
 
+    @Column(columnDefinition = "char not null comment '개인정보 동의여부'")
+    private String privacyPolicy;
+    @Column(columnDefinition = "char not null comment '마케팅 동의여부'")
+    private String allowPromotions;
+    @Column(columnDefinition = "char not null comment '자사 이용약관 동의여부'")
+    private String termsOfService;
 
 }
