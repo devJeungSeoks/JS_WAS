@@ -6,6 +6,7 @@ import com.user.entity.MemberDetail;
 import com.user.repository.MemberDetailRepository;
 import com.user.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class MemberService {
 
     @Autowired
@@ -26,6 +28,7 @@ public class MemberService {
 
     /**
      * 회원가입
+     *
      * @param memberDto
      */
     public void signUp(MemberDTO memberDto) {
@@ -36,7 +39,7 @@ public class MemberService {
 
         // Member 객체 생성 및 필드 설정
         Member member = createMemberFromDto(memberDto);
-        
+
         // MemberDetail 객체 생성 및 필드 설정
         MemberDetail memberDetail = createMemberDetailFromDto(memberDto);
 
@@ -63,7 +66,7 @@ public class MemberService {
      * @param userNo
      */
     public MemberDetail memberDetailSelect(Long userNo) {
-        return memberDetailRepository.findById(userNo).get();
+        return memberDetailRepository.findByMemberNo(userNo);
     }
 
     /**
@@ -72,28 +75,35 @@ public class MemberService {
      * @param memberDto
      */
     public Member login(MemberDTO memberDto) {
-        try {
-            // 회원 검색
-            Member member = memberRepository.findByMemberId(memberDto.getMemberId());
-
+        log.debug("Member Id : " + memberDto.getMemberId());
+        // 회원 검색
+        Member member = memberRepository.findByMemberId(memberDto.getMemberId());
+        log.debug("조회한 member : " + member);
+        if (member != null) {
+            log.debug("회원이 입력한 패스워드 : " + memberDto.getPassword());
+            log.debug("디비에서 가져온 암호화 패스워드 : " + member.getPassword());
             // 패스워드 비교(입력한 값, 비교값)
             if (passwordEncoder.matches(memberDto.getPassword(), member.getPassword())) {
+                log.debug("회원이 존재 한다면 True");
                 return member;
             } else {
+                log.debug("회원이 존재하지 않는다면 False");
                 throw new UsernameNotFoundException("Invalid username or password.");
             }
-        } catch (UsernameNotFoundException e) {
+        } else {
+            log.debug("회원이 존재하지 않는다면 False");
             throw new UsernameNotFoundException("Invalid username or password.");
         }
     }
 
     /**
      * 회원 객체
+     *
      * @param memberDto
      * @return
      */
     private Member createMemberFromDto(MemberDTO memberDto) {
-        
+
         Member member = new Member();
         member.setMemberId(memberDto.getMemberId());
         member.setPassword(memberDto.getPassword());
@@ -105,6 +115,7 @@ public class MemberService {
 
     /**
      * 회원상세 객체
+     *
      * @param memberDetailDto
      * @return
      */
@@ -127,6 +138,9 @@ public class MemberService {
         memberDetail.setEmail(memberDetailDto.getEmail());
         memberDetail.setTransLevel(memberDetailDto.getTransLevel());
         memberDetail.setTransPoint(memberDetailDto.getTransPoint());
+        memberDetail.setPrivacyPolicy(memberDetailDto.getPrivacyPolicy());
+        memberDetail.setAllowPromotions(memberDetailDto.getAllowPromotions());
+        memberDetail.setTermsOfService(memberDetailDto.getTermsOfService());
 
         return memberDetail;
     }
