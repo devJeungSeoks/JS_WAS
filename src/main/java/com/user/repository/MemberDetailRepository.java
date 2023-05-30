@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberDetailRepository extends JpaRepository<MemberDetail, Long> {
 
-
+    MemberDetail findByMemberNo(Long memberNo);
 }
