@@ -1,18 +1,15 @@
 package com.user.entity;
 
 import com.common.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "member")
 @Getter @Setter
-@NoArgsConstructor
-@ToString
 public class Member extends BaseEntity {
 
     @Id
@@ -31,6 +28,7 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "varchar(1) not null comment '활성여부'")
     private String saveStatus;
 
+    @JsonManagedReference
     @OneToOne(mappedBy = "member", optional = false, cascade = CascadeType.ALL)
     private MemberDetail memberDetail;
 
