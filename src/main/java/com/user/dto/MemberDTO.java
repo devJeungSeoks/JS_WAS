@@ -25,4 +25,7 @@ public class MemberDTO extends BaseEntity {
     private int transPoint;
     private String transLevel;
     private String email;
+    private String privacyPolicy;
+    private String allowPromotions;
+    private String termsOfService;
 }
