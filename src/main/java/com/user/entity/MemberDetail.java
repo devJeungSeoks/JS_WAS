@@ -1,6 +1,7 @@
 package com.user.entity;
 
 import com.common.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,7 +16,8 @@ public class MemberDetail extends BaseEntity {
     @Column(columnDefinition = "int not null comment '고유번호'")
     private Long no;
 
-    @OneToOne
+    @JsonBackReference
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberNo")
     private Member member;
 
