@@ -23,9 +23,9 @@ public class Member extends BaseEntity {
     @Column(columnDefinition = "varchar(255) not null comment '패스워드'")
     private String password;
 
-    @Column(columnDefinition = "varchar(1) not null comment '관리자여부'")
+    @Column(columnDefinition = "varchar(1) default 'N' not null comment '관리자여부'")
     private String adminYn;
-    @Column(columnDefinition = "varchar(1) not null comment '활성여부'")
+    @Column(columnDefinition = "varchar(1) default 'Y' not null comment '활성여부'")
     private String saveStatus;
 
     @JsonManagedReference
