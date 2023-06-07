@@ -12,8 +12,11 @@ public class Goods extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "no", columnDefinition = "int not null comment '상품 고유번호'")
+    @Column(name = "no", columnDefinition = "int not null comment '고유번호'")
     private Long no;
+
+    @Column(columnDefinition = "varchar(20) not null comment '상품코드'")
+    private String gShortCode;
 
     @Column(columnDefinition = "varchar(20) not null comment '상품명'")
     private String productName;
