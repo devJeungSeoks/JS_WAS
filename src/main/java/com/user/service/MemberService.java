@@ -47,7 +47,7 @@ public class MemberService {
         member.setMemberDetail(memberDetail);
         memberDetail.setMember(member);
 
-        // Member와 MemberDetail을 저장합니다.
+        // Member 와 MemberDetail 을 저장합니다.
         memberRepository.save(member);
     }
 
@@ -108,7 +108,7 @@ public class MemberService {
         member.setMemberId(memberDto.getMemberId());
         member.setPassword(memberDto.getPassword());
         member.setAdminYn(memberDto.getAdminYn());
-        member.setSaveStatus(memberDto.getSaveStatus());
+        member.setSaveStatus(member.getSaveStatus());
 
         return member;
     }
@@ -136,12 +136,54 @@ public class MemberService {
         memberDetail.setAddress2(memberDetailDto.getAddress2());
         memberDetail.setZipCode(memberDetailDto.getZipCode());
         memberDetail.setEmail(memberDetailDto.getEmail());
-        memberDetail.setTransLevel(memberDetailDto.getTransLevel());
-        memberDetail.setTransPoint(memberDetailDto.getTransPoint());
+        memberDetail.setTransLevel("B");
+        memberDetail.setTransPoint(0);
         memberDetail.setPrivacyPolicy(memberDetailDto.getPrivacyPolicy());
         memberDetail.setAllowPromotions(memberDetailDto.getAllowPromotions());
         memberDetail.setTermsOfService(memberDetailDto.getTermsOfService());
 
         return memberDetail;
+    }
+
+    /**
+     * 회원 객체
+     *
+     * @param member
+     * @param memberDetail
+     * @return
+     */
+    public MemberDTO memberDto(Member member, MemberDetail memberDetail) {
+        log.debug("memberDto.Member 데이터 : " + member);
+        log.debug("memberDto.MemberDetail 데이터 : " + memberDetail);
+
+        MemberDTO memberDTO = new MemberDTO();
+
+        memberDTO.setNo(member.getNo());
+        memberDTO.setMemberId(member.getMemberId());
+        memberDTO.setPassword(member.getPassword());
+        memberDTO.setAdminYn(member.getAdminYn());
+        memberDTO.setSaveStatus(member.getSaveStatus());
+
+
+        memberDTO.setMemberName(memberDetail.getMemberName());
+        memberDTO.setSsn(memberDetail.getSsn());
+        memberDTO.setSsn1(memberDetail.getSsn1());
+        memberDTO.setSsn2(memberDetail.getSsn2());
+        memberDTO.setPhone(memberDetail.getPhone());
+        memberDTO.setBankSeq(memberDetail.getBankSeq());
+        memberDTO.setBankAccount(memberDetail.getBankAccount());
+        memberDTO.setGender(memberDetail.getGender());
+        memberDTO.setAddress(memberDetail.getAddress());
+        memberDTO.setAddress1(memberDetail.getAddress1());
+        memberDTO.setAddress2(memberDetail.getAddress2());
+        memberDTO.setZipCode(memberDetail.getZipCode());
+        memberDTO.setEmail(memberDetail.getEmail());
+        memberDTO.setTransLevel(memberDetail.getTransLevel());
+        memberDTO.setTransPoint(memberDetail.getTransPoint());
+        memberDTO.setPrivacyPolicy(memberDetail.getPrivacyPolicy());
+        memberDTO.setAllowPromotions(memberDetail.getAllowPromotions());
+        memberDTO.setTermsOfService(memberDetail.getTermsOfService());
+
+        return memberDTO;
     }
 }
