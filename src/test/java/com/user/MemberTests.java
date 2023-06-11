@@ -71,7 +71,7 @@ public class MemberTests {
 
         // 패스워드를 암호화합니다.
         String encodedPassword = passwordEncoder.encode(decodePassword);
-        System.out.println(encodedPassword);
+        System.out.println("encodedPassword : " + encodedPassword);
 
     }
 
