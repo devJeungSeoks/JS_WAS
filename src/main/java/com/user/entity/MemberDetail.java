@@ -55,7 +55,7 @@ public class MemberDetail extends BaseEntity {
 
     @Column(columnDefinition = "int not null comment '거래점수'")
     private int transPoint;
-    @Column(columnDefinition = "char not null comment '거래 레벨'")
+    @Column(columnDefinition = "char default 'B' not null comment '거래 레벨'")
     private String transLevel;
 
     @Column(columnDefinition = "varchar(40) null comment '이메일'")

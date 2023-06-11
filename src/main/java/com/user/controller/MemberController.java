@@ -28,7 +28,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public MemberDetail login(@RequestBody MemberDTO memberDTO) {
+    public MemberDTO login(@RequestBody MemberDTO memberDTO) {
         log.debug("로그인 들어온 데이터 : " + memberDTO);
         try {
             Member member = memberService.login(memberDTO);
@@ -36,8 +36,8 @@ public class MemberController {
 
             if (member.getNo() != null) {
                 MemberDetail memberDetail = memberService.memberDetailSelect(member.getNo());
-                log.debug("MemberDetail Entity Data : " + memberDetail);
-                return memberDetail;
+                log.debug("Member Data : " + memberService.memberDto(member, memberDetail));
+                return memberService.memberDto(member, memberDetail);
             } else {
                 log.debug("데이터가 존재하지 않음.");
                 return null;
