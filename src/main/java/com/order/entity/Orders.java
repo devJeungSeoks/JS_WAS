@@ -36,7 +36,12 @@ public class Orders extends BaseEntity {
     private String memberPhone;
 
     @Column(columnDefinition = "varchar(20) not null comment '상품코드'")
-    private String gShortCode;
+    private String goodsCode;
+
+    @Column(name = "costPrice", columnDefinition = "int not null comment '원가'")
+    private int costPrice;
+    @Column(name = "salesPrice", columnDefinition = "int not null comment '판매가'")
+    private int salesPrice;
 
     @Column(columnDefinition = "varchar(1) default '1' not null comment '주문상태(1: 대기, 2: 주문승인, 3: 결제대기, 4: 배송대기, 5:배송 준비중, 6: 배송중, 7: 배송완료, 8: 결제완료)'")
     private String orderLevel;

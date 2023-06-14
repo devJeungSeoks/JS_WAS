@@ -7,9 +7,11 @@ import lombok.Data;
 public class OrderDTO extends BaseEntity {
     private Long no;
     private String orderNo;
-    private String memberNo;
+    private Long memberNo;
     private String memberEmail;
     private String memberPhone;
-    private String gShortCode;
+    private String goodsCode;
     private String orderLevel;
+    private int costPrice;
+    private int salesPrice;
 }
