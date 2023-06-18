@@ -39,5 +39,9 @@ public class Member extends BaseEntity {
     @OneToOne(mappedBy = "member", optional = false, cascade = CascadeType.ALL)
     private MemberDetail memberDetail;
 
+    @JsonManagedReference
+    @OneToOne(mappedBy = "member", optional = false, cascade = CascadeType.ALL)
+    private MemberCash memberCash;
+
 }
 
