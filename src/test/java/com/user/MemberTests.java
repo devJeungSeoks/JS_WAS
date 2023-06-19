@@ -2,22 +2,20 @@ package com.user;
 
 import com.user.controller.MemberController;
 import com.user.repository.MemberRepository;
-import com.user.service.MemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 //@SpringBootTest
 public class MemberTests {
-//    @Autowired
+    //    @Autowired
     MemberRepository memberRepository;
 
-//    @Autowired
+    //    @Autowired
     MemberController memberController;
 
 //    @Autowired
-    MemberService memberService;
-
+//    MemberService memberService;
 
 
     @Test
@@ -58,7 +56,7 @@ public class MemberTests {
 //    }
 
     @Test
-    public void passwordEncodeTest(){
+    public void passwordEncodeTest() {
         String decodePassword = "23";
 
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -70,14 +68,13 @@ public class MemberTests {
     }
 
 
-
-
     @Test
     public void login() {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String pasa = "$2a$10$9cCwdrdwH09zmLCPL8qHh.inZx.4nZsi4DTianCyIM4QcwyRCejBu";
-        passwordEncoder.matches("223",pasa);
+        passwordEncoder.matches("223", pasa);
     }
+
     @Test
     public void loginUserDetailTest() {
 
