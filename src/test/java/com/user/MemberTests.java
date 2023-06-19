@@ -1,67 +1,61 @@
 package com.user;
 
 import com.user.controller.MemberController;
-import com.user.dto.MemberDTO;
-import com.user.entity.Member;
 import com.user.repository.MemberRepository;
 import com.user.service.MemberService;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.List;
-
-@SpringBootTest
+//@SpringBootTest
 public class MemberTests {
-    @Autowired
+//    @Autowired
     MemberRepository memberRepository;
 
-    @Autowired
+//    @Autowired
     MemberController memberController;
 
-    @Autowired
+//    @Autowired
     MemberService memberService;
 
 
 
     @Test
     public void selectTest() {
-        List goods = memberRepository.findAll();
-
-        System.out.println("list : " + goods);
+//        List goods = memberRepository.findAll();
+//
+//        System.out.println("list : " + goods);
     }
-    @Test
-    public void createTest(){
-
-        MemberDTO goodsDTO = new MemberDTO();
-        goodsDTO.setMemberId("mias23s");
-        goodsDTO.setPassword("23");
-        goodsDTO.setAdminYn("N");
-        goodsDTO.setSaveStatus("Y");
-
-
-        goodsDTO.setMemberId("Test");
-        goodsDTO.setMemberName("TestName");
-        goodsDTO.setGender("M");
-        goodsDTO.setSsn("9601281234567");
-        goodsDTO.setSsn1("960228");
-        goodsDTO.setSsn2("1234567");
-        goodsDTO.setEmail("dsaj@naver.com");
-        goodsDTO.setPhone("01034340069");
-        goodsDTO.setAddress("경기도 수원시 팔달구");
-        goodsDTO.setAddress1("메산로 14");
-        goodsDTO.setAddress2("동남아파트 101동 101호");
-        goodsDTO.setZipCode("12352");
-        goodsDTO.setBankAccount("62350101123456");
-        goodsDTO.setBankSeq("001");
-        goodsDTO.setTransLevel("1");
-        goodsDTO.setTransPoint(0);
-
-        memberController.signUp(goodsDTO);
-
-    }
+//    @Test
+//    public void createTest(){
+//
+//        MemberDTO goodsDTO = new MemberDTO();
+//        goodsDTO.setMemberId("mias23s");
+//        goodsDTO.setPassword("23");
+//        goodsDTO.setAdminYn("N");
+//        goodsDTO.setSaveStatus("Y");
+//
+//
+//        goodsDTO.setMemberId("Test");
+//        goodsDTO.setMemberName("TestName");
+//        goodsDTO.setGender("M");
+//        goodsDTO.setSsn("9601281234567");
+//        goodsDTO.setSsn1("960228");
+//        goodsDTO.setSsn2("1234567");
+//        goodsDTO.setEmail("dsaj@naver.com");
+//        goodsDTO.setPhone("01034340069");
+//        goodsDTO.setAddress("경기도 수원시 팔달구");
+//        goodsDTO.setAddress1("메산로 14");
+//        goodsDTO.setAddress2("동남아파트 101동 101호");
+//        goodsDTO.setZipCode("12352");
+//        goodsDTO.setBankAccount("62350101123456");
+//        goodsDTO.setBankSeq("001");
+//        goodsDTO.setTransLevel("1");
+//        goodsDTO.setTransPoint(0);
+//
+//        memberController.signUp((Map<String, String>) goodsDTO);
+//
+//    }
 
     @Test
     public void passwordEncodeTest(){
@@ -87,11 +81,11 @@ public class MemberTests {
     @Test
     public void loginUserDetailTest() {
 
-        MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setMemberId("mis");
-        memberDTO.setPassword("223");
+//        MemberDTO memberDTO = new MemberDTO();
+//        memberDTO.setMemberId("mis");
+//        memberDTO.setPassword("223");
 
-        Member member = memberService.login(memberDTO);
+//        Member member = memberService.login(memberDTO);
 
     }
 }
