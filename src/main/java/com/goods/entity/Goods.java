@@ -18,7 +18,7 @@ public class Goods extends BaseEntity {
     @Comment("고유번호")
     private Long no;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, unique = true)
     @Comment("상품코드")
     private String gShortCode;
 
