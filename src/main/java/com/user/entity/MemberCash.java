@@ -1,9 +1,9 @@
 package com.user.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
@@ -18,25 +18,26 @@ public class MemberCash {
     @Comment("고유번호")
     private Long no;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberNo")
+    @JoinColumn(name = "memberNo", unique = true)
+    @Comment("회원 고유번호")
     private Member member;
 
-    @Column(nullable = false)
     @Comment("잔액")
+    @ColumnDefault("0")
     private int amount;
 
-    @Column(nullable = false)
     @Comment("마일리지")
+    @ColumnDefault("0")
     private int mileage;
 
-    @Column(nullable = false)
     @Comment("누적잔액")
+    @ColumnDefault("0")
     private int acmAmount;
 
-    @Column(nullable = false)
     @Comment("누적 마일리지")
+    @ColumnDefault("0")
     private int acmMileage;
 
 }

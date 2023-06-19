@@ -2,8 +2,10 @@ package com.goods.dto;
 
 import com.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class GoodsDTO extends BaseEntity {
     private Long no;
     private String productName;

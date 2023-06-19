@@ -1,7 +1,7 @@
 package com.user.entity;
 
 import com.common.entity.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
@@ -9,9 +9,10 @@ import org.hibernate.annotations.Comment;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "memberDetail")
-@Getter
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter
+@Builder
 public class MemberDetail extends BaseEntity {
 
     @Id
@@ -19,9 +20,10 @@ public class MemberDetail extends BaseEntity {
     @Comment("고유번호")
     private Long no;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memberNo")
+    @JoinColumn(name = "memberNo", unique = true)
+    @Comment("회원 고유번호")
     private Member member;
 
     @Column(length = 20, nullable = false)
@@ -68,25 +70,25 @@ public class MemberDetail extends BaseEntity {
     @Comment("우편번호")
     private String zipCode;
 
-    @Column(nullable = false)
+    @Column(length = 1, nullable = false)
     @Comment("거래점수")
     private int transPoint;
-    @Column(nullable = false)
+    @Column(length = 1, nullable = false)
     @Comment("거래레벨")
-    @ColumnDefault("B")
+    @ColumnDefault("'B'")
     private String transLevel;
 
     @Column(length = 40)
     @Comment("이메일")
     private String email;
 
-    @Column(nullable = false)
+    @Column(length = 1, nullable = false)
     @Comment("개인정보 동의여부")
     private String privacyPolicy;
-    @Column(nullable = false)
+    @Column(length = 1, nullable = false)
     @Comment("마케팅 동의여부")
     private String allowPromotions;
-    @Column(nullable = false)
+    @Column(length = 1, nullable = false)
     @Comment("자사 이용약관 동의여부")
     private String termsOfService;
 
