@@ -2,15 +2,16 @@ package com.user.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter
-@Table(name = "userCash")
+@Getter
+@Setter
 public class MemberCash {
 
     @Id
