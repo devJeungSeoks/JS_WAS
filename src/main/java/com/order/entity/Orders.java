@@ -53,7 +53,7 @@ public class Orders extends BaseEntity {
     private int salesPrice;
 
     @Column(nullable = false, length = 1)
-    @ColumnDefault("1")
+    @ColumnDefault("'1'")
     @Comment("주문상태(1: 대기, 2: 주문승인, 3: 결제대기, 4: 배송대기, 5:배송 준비중, 6: 배송중, 7: 배송완료, 8: 결제완료)")
     private String orderLevel;
 }
