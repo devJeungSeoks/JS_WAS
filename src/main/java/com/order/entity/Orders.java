@@ -3,20 +3,19 @@ package com.order.entity;
 import com.common.entity.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.user.entity.Member;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Comment;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "orders",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = {"orderNo"}, name = "orderNo")
-        })
+@Table(name = "orders", uniqueConstraints = {@UniqueConstraint(columnNames = {"orderNo"}, name = "orderNo")})
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Orders extends BaseEntity {
 
     @Id
@@ -47,10 +46,10 @@ public class Orders extends BaseEntity {
 
     @Column(nullable = false, name = "costPrice")
     @Comment("원가")
-    private int costPrice;
+    private Integer costPrice;
     @Column(nullable = false, name = "salesPrice")
     @Comment("판매가")
-    private int salesPrice;
+    private Integer salesPrice;
 
     @Column(nullable = false, length = 1)
     @ColumnDefault("'1'")
