@@ -12,6 +12,6 @@ public class OrderDTO extends BaseEntity {
     private String memberPhone;
     private String goodsCode;
     private String orderLevel;
-    private int costPrice;
-    private int salesPrice;
+    private Integer costPrice;
+    private Integer salesPrice;
 }
