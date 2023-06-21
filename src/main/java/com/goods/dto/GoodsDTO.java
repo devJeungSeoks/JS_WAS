@@ -10,9 +10,9 @@ public class GoodsDTO extends BaseEntity {
     private Long no;
     private String productName;
     private String kind;
-    private int costPrice;
-    private int salesPrice;
-    private int profitPrice;
+    private Integer costPrice;
+    private Integer salesPrice;
+    private Integer profitPrice;
     private String content;
     private String limitedTimeOffer;
     private String image;

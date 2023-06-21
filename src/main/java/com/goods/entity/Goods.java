@@ -18,7 +18,7 @@ public class Goods extends BaseEntity {
     @Comment("고유번호")
     private Long no;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 20, nullable = false, unique = true)
     @Comment("상품코드")
     private String gShortCode;
 
@@ -32,13 +32,13 @@ public class Goods extends BaseEntity {
 
     @Column(name = "costPrice", nullable = false)
     @Comment("원가")
-    private int costPrice;
+    private Integer costPrice;
     @Column(name = "salesPrice", nullable = false)
     @Comment("판매가")
-    private int salesPrice;
+    private Integer salesPrice;
     @Column(name = "profitPrice", nullable = false)
     @Comment("이익")
-    private int profitPrice;
+    private Integer profitPrice;
 
     @Column(length = 1000, nullable = false)
     @Comment("상품설명")

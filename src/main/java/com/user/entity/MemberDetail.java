@@ -72,6 +72,7 @@ public class MemberDetail extends BaseEntity {
 
     @Column(length = 1, nullable = false)
     @Comment("거래점수")
+    @ColumnDefault("0")
     private int transPoint;
     @Column(length = 1, nullable = false)
     @Comment("거래레벨")
