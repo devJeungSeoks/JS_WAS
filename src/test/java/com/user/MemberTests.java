@@ -1,59 +1,27 @@
 package com.user;
 
+import com.config.jwt.JwtTokenProvider;
 import com.user.controller.MemberController;
+import com.user.entity.Member;
 import com.user.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-//@SpringBootTest
+@SpringBootTest
 public class MemberTests {
-    //    @Autowired
+    @Autowired
     MemberRepository memberRepository;
 
-    //    @Autowired
+    @Autowired
     MemberController memberController;
 
-//    @Autowired
-//    MemberService memberService;
-
-
-    @Test
-    public void selectTest() {
-//        List goods = memberRepository.findAll();
-//
-//        System.out.println("list : " + goods);
-    }
-//    @Test
-//    public void createTest(){
-//
-//        MemberDTO goodsDTO = new MemberDTO();
-//        goodsDTO.setMemberId("mias23s");
-//        goodsDTO.setPassword("23");
-//        goodsDTO.setAdminYn("N");
-//        goodsDTO.setSaveStatus("Y");
-//
-//
-//        goodsDTO.setMemberId("Test");
-//        goodsDTO.setMemberName("TestName");
-//        goodsDTO.setGender("M");
-//        goodsDTO.setSsn("9601281234567");
-//        goodsDTO.setSsn1("960228");
-//        goodsDTO.setSsn2("1234567");
-//        goodsDTO.setEmail("dsaj@naver.com");
-//        goodsDTO.setPhone("01034340069");
-//        goodsDTO.setAddress("경기도 수원시 팔달구");
-//        goodsDTO.setAddress1("메산로 14");
-//        goodsDTO.setAddress2("동남아파트 101동 101호");
-//        goodsDTO.setZipCode("12352");
-//        goodsDTO.setBankAccount("62350101123456");
-//        goodsDTO.setBankSeq("001");
-//        goodsDTO.setTransLevel("1");
-//        goodsDTO.setTransPoint(0);
-//
-//        memberController.signUp((Map<String, String>) goodsDTO);
-//
-//    }
+    @Autowired
+    JwtTokenProvider jwtTokenProvider;
 
     @Test
     public void passwordEncodeTest() {
@@ -76,13 +44,16 @@ public class MemberTests {
     }
 
     @Test
-    public void loginUserDetailTest() {
+    public void jwtTest() {
 
-//        MemberDTO memberDTO = new MemberDTO();
-//        memberDTO.setMemberId("mis");
-//        memberDTO.setPassword("223");
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuZDIyMyIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2ODczNTEyODcsImV4cCI6MTY4NzQzNzY4N30.D3ogg1FVz4uZ3B3G5xxjM87_95W0kGz4yr2lvQnXiaY";
+        Authentication authentication = jwtTokenProvider.getAuthentication(token);
+        System.out.println("authentication : " + authentication);
 
-//        Member member = memberService.login(memberDTO);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) authentication;
+        System.out.println("usernamePasswordAuthenticationToken : " + usernamePasswordAuthenticationToken.getPrincipal());
 
+        Member member = (Member) usernamePasswordAuthenticationToken.getPrincipal();
+        System.out.println(member.getMemberId());
     }
 }
