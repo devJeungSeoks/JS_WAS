@@ -22,7 +22,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Component
-@PropertySource("classpath:config.properties")
+@PropertySource("classpath:properties/config.properties")
 @Log4j2
 public class JwtTokenProvider {
 

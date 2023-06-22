@@ -1,21 +1,29 @@
 package com.smtp;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.test.context.TestPropertySource;
 
 import java.util.Properties;
 
 @SpringBootTest
+@TestPropertySource("classpath:properties/smtp.properties")
 public class SmtpTests {
+    @Value("${smtp.host}")
+    String host;
+    @Value("${smtp.port}")
+    int port;
+    @Value("${smtp.username}")
+    String username;
+    @Value("${smtp.password}")
+    String password;
 
     @Test
     public void smtpTest() {
-        String host = "smtp.gmail.com";
-        int port = 587;
-        String username = "dks2922@gmail.com";
-        String password = "bjknfoiuqcntmngv";
+
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost(host);
