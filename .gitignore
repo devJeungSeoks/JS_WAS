@@ -7,6 +7,9 @@
 # DB
 src/main/resources/application.properties
 
+# properties
+src/main/resources/properties/*.properties
+
 # Log file
 *.log
 
