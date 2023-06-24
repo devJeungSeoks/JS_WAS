@@ -11,12 +11,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "orders", uniqueConstraints = {@UniqueConstraint(columnNames = {"orderNo"}, name = "orderNo")})
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Orders extends BaseEntity {
+public class Order extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "order_seq")
@@ -55,5 +53,6 @@ public class Orders extends BaseEntity {
     @ColumnDefault("'1'")
     @Comment("주문상태(1: 대기, 2: 주문승인, 3: 결제대기, 4: 배송대기, 5:배송 준비중, 6: 배송중, 7: 배송완료, 8: 결제완료)")
     private String orderLevel;
+
 }
 
