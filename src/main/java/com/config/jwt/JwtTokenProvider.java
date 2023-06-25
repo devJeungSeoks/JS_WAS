@@ -1,5 +1,6 @@
 package com.config.jwt;
 
+import com.config.jwt.dto.Token;
 import com.user.service.CustomUserDetailService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -29,8 +30,11 @@ public class JwtTokenProvider {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    @Value("${jwt.expirationTime}")
-    private long tokenValidTime = 30 * 60 * 1000L;
+    @Value("${jwt.accessTokenValidTime}")
+    private long accessTokenValidTime;
+
+    @Value("${jwt.refreshTokenValidTime}")
+    private long refreshTokenValidTime;
 
     private final CustomUserDetailService userDetailService;
 
@@ -42,18 +46,30 @@ public class JwtTokenProvider {
     }
 
     //JWT 토큰 생성
-    public String createToken(String userPk, List<String> roles) {
+    public Token createToken(String userPk, List<String> roles) {
         log.debug("roles : " + roles);
         Claims claims = Jwts.claims().setSubject(userPk);   // JWT payload 에 저장되는 정보단위
         claims.put("roles", roles);
         Date now = new Date();
-        return Jwts.builder()
+        // Access Token
+        String accessToken = Jwts.builder()
                 .setClaims(claims)  // 정보 저장
                 .setIssuedAt(now)   // 토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + tokenValidTime))    // set Expire Time
+                .setExpiration(new Date(now.getTime() + accessTokenValidTime))    // set Expire Time
                 .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
 //                 signature 에 들어갈 secret값 세팅
                 .compact();
+
+        // Refresh Token
+        String refreshToken = Jwts.builder()
+                .setClaims(claims)  // 정보 저장
+                .setIssuedAt(now)   // 토큰 발행 시간 정보
+                .setExpiration(new Date(now.getTime() + refreshTokenValidTime))    // set Expire Time
+                .signWith(SignatureAlgorithm.HS256, secretKey)  // 사용할 암호화 알고리즘과
+//                 signature 에 들어갈 secret값 세팅
+                .compact();
+
+        return Token.builder().accessToken(accessToken).refreshToken(refreshToken).key(userPk).build();
     }
 
     // JWT 토큰에서 인증 정보 조회

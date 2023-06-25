@@ -1,6 +1,7 @@
 package com.user.controller;
 
 import com.config.jwt.JwtTokenProvider;
+import com.config.jwt.dto.Token;
 import com.user.entity.Member;
 import com.user.entity.MemberCash;
 import com.user.entity.MemberDetail;
@@ -74,7 +75,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody Map<String, String> user) {
+    public Token login(@RequestBody Map<String, String> user) {
         log.debug("로그인 들어온 데이터 : " + user);
 
         Member member = memberRepository.findByMemberId(user.get("memberId"))
