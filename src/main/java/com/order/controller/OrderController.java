@@ -42,7 +42,8 @@ public class OrderController {
         System.out.println("ㅠㅠㅠㅠ : " + jwtTokenProvider.getAuthentication(token).getPrincipal());
 
         String return_msg = "";
-        if (jwtTokenProvider.validateToken(token) == true && !orderDTO.getGoodsCode().isEmpty()) {
+        if (jwtTokenProvider.validateToken(token) == true) {
+//        if (jwtTokenProvider.validateToken(token) == true && !orderDTO.getGoodsCode().isEmpty()) {
             Member member = (Member) jwtTokenProvider.getAuthentication(token).getPrincipal();
 //            OrderDTO order = orderService.createOrderDTOToOrder(orderDTO, member);
 //            System.out.println("sss : " + order);

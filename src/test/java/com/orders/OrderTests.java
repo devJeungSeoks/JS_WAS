@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 //@SpringBootTest
-public class OrdersTests {
+public class OrderTests {
     @Test
     public void createTest(){
         OrderDTO orderDTO = new OrderDTO();
